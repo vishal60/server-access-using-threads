@@ -8,12 +8,12 @@ public class Test {
 
 	public static void main(String[] args) {
 		ClientThread.setMaxClients(MAX_CONNECTIONS);
-		new ClientThread(1, 8);
-		new ClientThread(2, 3);
-		new ClientThread(3, 5);
-		new ClientThread(4, 8);
-		new ClientThread(5, 10);
-		new ClientThread(6, 6);
+		ClientThread.addClient(1, 8);
+		ClientThread.addClient(2, 3);
+		ClientThread.addClient(3, 5);
+		ClientThread.addClient(4, 8);
+		ClientThread.addClient(5, 10);
+		ClientThread.addClient(6, 6);
 
 	}
 

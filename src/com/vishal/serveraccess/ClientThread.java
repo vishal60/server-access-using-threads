@@ -11,7 +11,7 @@ public class ClientThread implements Runnable {
 	private int clientNo;
 	private static ArrayList<ClientThread> al = new ArrayList<ClientThread>();
 
-	public ClientThread(int clientNo, int accessTime) {
+	private ClientThread(int clientNo, int accessTime) {
 		this.accessTime = 1000 * accessTime;
 		this.clientNo = clientNo;
 		al.add(this);
@@ -50,6 +50,10 @@ public class ClientThread implements Runnable {
 			t.start();
 		}
 	
+	}
+
+	public static void addClient(int clientNo, int accessTime) {
+		new ClientThread(clientNo, accessTime);		
 	}
 	
 }
