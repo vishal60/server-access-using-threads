@@ -1,20 +1,20 @@
 package com.vishal.serveraccess.test;
 
-import com.vishal.serveraccess.ClientThread;
+import com.vishal.serveraccess.Server;
 
 public class Test {
 
 	public static final int MAX_CONNECTIONS = 4;
 
 	public static void main(String[] args) {
-		ClientThread.setMaxClients(MAX_CONNECTIONS);
-		ClientThread.addClient(1, 8);
-		ClientThread.addClient(2, 3);
-		ClientThread.addClient(3, 5);
-		ClientThread.addClient(4, 8);
-		ClientThread.addClient(5, 10);
-		ClientThread.addClient(6, 6);
-
+		Server.setMaxClients(MAX_CONNECTIONS);
+		Server.newConnection(1, 8);
+		Server.newConnection(2, 3);
+		Server.newConnection(3, 5);
+		Server.newConnection(4, 8);
+		Server.newConnection(5, 10);
+		Server.newConnection(6, 6);
+		
 	}
 
 }
