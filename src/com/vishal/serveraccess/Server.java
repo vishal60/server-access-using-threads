@@ -2,16 +2,16 @@ package com.vishal.serveraccess;
 
 import java.util.ArrayList;
 
-public class ClientThread implements Runnable {
+public class Server implements Runnable {
 
 	private static int maxClients;
 	private Thread t;
 	private int accessTime;
 	private static int noOfClients;
 	private int clientNo;
-	private static ArrayList<ClientThread> al = new ArrayList<ClientThread>();
+	private static ArrayList<Server> al = new ArrayList<Server>();
 
-	private ClientThread(int clientNo, int accessTime) {
+	private Server(int clientNo, int accessTime) {
 		this.accessTime = 1000 * accessTime;
 		this.clientNo = clientNo;
 		al.add(this);
@@ -24,7 +24,7 @@ public class ClientThread implements Runnable {
 			if (noOfClients <= maxClients) {
 				System.out.println("Client - " + clientNo + " is accessing the server");
 				try {
-					Thread.sleep(accessTime);
+					Thread.sleep(accessTime+1000);
 				} catch (InterruptedException e) {}
 				System.out.println("Client - " + clientNo + " is done accessing the server");
 				--noOfClients;
@@ -52,8 +52,8 @@ public class ClientThread implements Runnable {
 	
 	}
 
-	public static void addClient(int clientNo, int accessTime) {
-		new ClientThread(clientNo, accessTime);		
+	public static void newConnection(int clientNo, int accessTime) {
+		new Server(clientNo, accessTime);		
 	}
 	
 }
