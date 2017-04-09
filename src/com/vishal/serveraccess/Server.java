@@ -24,7 +24,7 @@ public class Server implements Runnable {
 			if (noOfClients <= maxClients) {
 				System.out.println("Client - " + clientNo + " is accessing the server");
 				try {
-					Thread.sleep(accessTime);
+					Thread.sleep(accessTime+1000);
 				} catch (InterruptedException e) {}
 				System.out.println("Client - " + clientNo + " is done accessing the server");
 				--noOfClients;
