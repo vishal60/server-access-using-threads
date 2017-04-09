@@ -1,5 +1,7 @@
 package com.vishal.serveraccess;
 
+import java.util.ArrayList;
+
 public class ClientThread implements Runnable {
 
 	private static int maxClients;
@@ -7,10 +9,13 @@ public class ClientThread implements Runnable {
 	private int accessTime;
 	private static int noOfClients;
 	private int clientNo;
+	private static ArrayList<ClientThread> al = new ArrayList<ClientThread>();
 
-	public ClientThread(int accessTime, int clientNo) {
-		this.accessTime = accessTime;
+	public ClientThread(int clientNo, int accessTime) {
+		this.accessTime = 1000 * accessTime;
 		this.clientNo = clientNo;
+		al.add(this);
+		this.start();
 	}
 
 	public void run() {
@@ -26,12 +31,13 @@ public class ClientThread implements Runnable {
 				break;
 			} else {
 				--noOfClients;
-				System.out.println("Server is Busy, client - " + clientNo + " wait for some time");
+				System.out.println("client - " + clientNo + " wait for some time, Server is Busy");
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {}
 			}
 		}
+		al.remove(this);
 	}
 
 	public static void setMaxClients(int mc) {
@@ -43,5 +49,7 @@ public class ClientThread implements Runnable {
 			t = new Thread(this);
 			t.start();
 		}
+	
 	}
+	
 }
